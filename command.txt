@@ -1,0 +1,104 @@
+
+
+Usage: opencv_createsamples
+  [-info <collection_file_name>]
+  [-img <image_file_name>]
+  [-vec <vec_file_name>]
+  [-bg <background_file_name>]
+  [-num <number_of_samples = 1000>]
+  [-bgcolor <background_color = 0>]
+  [-inv] [-randinv] [-bgthresh <background_color_threshold = 80>]
+  [-maxidev <max_intensity_deviation = 40>]
+  [-maxxangle <max_x_rotation_angle = 1.100000>]
+  [-maxyangle <max_y_rotation_angle = 1.100000>]
+  [-maxzangle <max_z_rotation_angle = 0.500000>]
+  [-show [<scale = 4.000000>]]
+  [-w <sample_width = 24>]
+  [-h <sample_height = 24>]
+  [-maxscale <max sample scale = -1.000000>]
+
+
+
+
+dir /s /B /O p\*.jpg > pos.txt
+
+
+
+opencv_createsamples ^
+-info "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\annotations.txt"   ^
+-img "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\car.png"   ^
+-vec "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\pos_samples.vec" ^
+-bg "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\bg.txt"   ^
+-num 1000 ^
+-pngoutput   ^
+-maxxangle 0.1   ^
+-maxyangle 0.1   ^
+-maxzangle 0.1   ^
+-show 
+-w 50 -h 50   ^
+
+
+
+opencv_createsamples ^
+-info "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\annotations.txt"   ^
+-img "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\car.png"   ^
+-bg "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\bg.txt"   ^
+-num 1000 ^
+-pngoutput   ^
+-maxxangle 0.1   ^
+-maxyangle 0.1   ^
+-maxzangle 0.1   ^
+-show 
+
+
+opencv_createsamples    ^
+-info annotations.txt    ^
+-bg negatives.txt    ^
+-vec positives.txt    ^
+-w 24 -h 24  
+
+
+
+========================================================================================
+Usage: opencv_traincascade
+  -data <cascade_dir_name>
+  -vec <vec_file_name>
+  -bg <background_file_name>
+  [-numPos <number_of_positive_samples = 2000>]
+  [-numNeg <number_of_negative_samples = 1000>]
+  [-numStages <number_of_stages = 20>]
+  [-precalcValBufSize <precalculated_vals_buffer_size_in_Mb = 1024>]
+  [-precalcIdxBufSize <precalculated_idxs_buffer_size_in_Mb = 1024>]
+  [-baseFormatSave]
+  [-numThreads <max_number_of_threads = 4>]
+  [-acceptanceRatioBreakValue <value> = -1>]
+--cascadeParams--
+  [-stageType <BOOST(default)>]
+  [-featureType <{HAAR(default), LBP, HOG}>]
+  [-w <sampleWidth = 24>]
+  [-h <sampleHeight = 24>]
+--boostParams--
+  [-bt <{DAB, RAB, LB, GAB(default)}>]
+  [-minHitRate <min_hit_rate> = 0.995>]
+  [-maxFalseAlarmRate <max_false_alarm_rate = 0.5>]
+  [-weightTrimRate <weight_trim_rate = 0.95>]
+  [-maxDepth <max_depth_of_weak_tree = 1>]
+  [-maxWeakCount <max_weak_tree_count = 100>]
+--haarFeatureParams--
+  [-mode <BASIC(default) | CORE | ALL
+--lbpFeatureParams--
+--HOGFeatureParams--
+
+
+
+opencv_traincascade 
+-data "E:\PROJECT ALL\kaggle\project\car detection haarcascade training raju\classifier" 
+-vec positives.txt 
+-bg negatives.txt 
+-numPos 430 
+-numNeg 450 
+-w 24 -h 24 
+-precalcValBufSize 1024 
+-precalcIdxBufSize 1024 
+-numStages 25 
+-acceptanceRatioBreakValue 1.0e-5
